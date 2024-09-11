@@ -8,6 +8,7 @@ class ImageCropper:
     def __init__(self, root):
         self.root = root
         self.root.title("Image Cropper")
+        self.root.state("zoomed") 
 
         self.canvas = tk.Canvas(self.root, cursor="cross")
         self.canvas.pack(fill="both", expand=True)
