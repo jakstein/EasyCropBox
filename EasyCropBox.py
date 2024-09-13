@@ -123,7 +123,11 @@ class ImageCropper:
         offset_x = (canvas_width - int(img_width * ratio)) // 2
         offset_y = (canvas_height - int(img_height * ratio)) // 2
 
-        x1, y1, x2, y2 = [int((coord - offset) / ratio) for coord, offset in zip(self.crop_rect, [offset_x, offset_y, offset_x, offset_y])]
+        coords_offsets = zip(self.crop_rect, [offset_x, offset_y, offset_x, offset_y])
+        # calculate the actual crop coordinates in the original image
+        x1, y1, x2, y2 = [int((coord - offset) / ratio) for coord, offset in coords_offsets]
+        # ensure that "left" < "right" and "top" < "bottom"
+        x1, x2, y1, y2 = sorted([x1, x2]) + sorted([y1, y2])
         
         cropped_image = self.image.crop((x1, y1, x2, y2))
         cropped_image.save(self.image_path, 'PNG')
