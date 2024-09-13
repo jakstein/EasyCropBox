@@ -5,6 +5,29 @@ import os
 import glob
 
 class ImageCropper:
+    """
+    ImageCropper is a class that provides functionality for cropping images using a graphical user interface.
+    Attributes:
+        root (tk.Tk): The main application window.
+        canvas (tk.Canvas): The canvas where the image is displayed and cropping is done.
+        image (PIL.Image): The currently loaded image.
+        tk_image (ImageTk.PhotoImage): The Tkinter-compatible image for display.
+        image_path (str): The file path of the currently loaded image.
+        image_list (list): A list of image file paths for navigation.
+        current_image_index (int): The index of the currently displayed image in image_list.
+        crop_rect (list): Coordinates of the cropping rectangle.
+        rect_id (int): The ID of the rectangle drawn on the canvas.
+    Methods:
+        drop(event): Handles the drop event for loading an image.
+        load_image(file_path): Loads an image from the specified file path and displays it.
+        display_image(): Resizes and displays the current image on the canvas.
+        start_crop(event): Initializes the cropping rectangle on mouse button press.
+        update_crop(event): Updates the cropping rectangle as the mouse is dragged.
+        end_crop(event): Finalizes the cropping rectangle on mouse button release.
+        save_crop(): Crops the image based on the cropping rectangle and saves it.
+        load_prev_image(): Loads the previous image from the image list.
+        load_next_image(): Loads the next image from the image list.
+    """
     def __init__(self, root):
         self.root = root
         self.root.title("Image Cropper")
