@@ -49,16 +49,6 @@ class ImageCropper:
     def drop(self, event):
         file_path = event.data.strip('{}')
         self.load_image(file_path)
-        self.load_image_list()
-
-    def load_image_list(self):
-        folder = os.path.dirname(self.image_path)
-        extensions = ('*.png', '*.jpg', '*.jpeg', '*.bmp', '*.gif')
-        self.image_list = []
-        for ext in extensions:
-            self.image_list.extend(glob.glob(os.path.join(folder, ext)))
-        self.image_list.sort()
-        self.current_image_index = self.image_list.index(self.image_path)
 
     def load_image(self, file_path):
         self.image_path = file_path
