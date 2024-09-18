@@ -144,7 +144,8 @@ class ImageCropper:
         
         cropped_image = self.image.crop((x1, y1, x2, y2))
         cropped_image.save(self.image_path, 'PNG')
-        self.load_image(self.image_path)  # reload the cropped image
+        self.image = cropped_image  # change the current image to the cropped one
+        self.display_image()  # refresh the canvas with the cropped image
 
     def load_prev_image(self):
         if self.image_list and self.current_image_index > 0:
