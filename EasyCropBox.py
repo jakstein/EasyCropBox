@@ -44,6 +44,8 @@ class ImageCropper:
 
         self.crop_rect = None
         self.rect_id = None
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
 
         self.canvas.bind("<ButtonPress-1>", self.start_crop)
         self.canvas.bind("<B1-Motion>", self.update_crop)
@@ -52,13 +54,13 @@ class ImageCropper:
         self.control_frame = tk.Frame(self.root)
         self.control_frame.pack()
 
-        self.prev_button = tk.Button(self.control_frame, text="<", command=self.load_prev_image)
+        self.prev_button = tk.Button(self.control_frame, text="<", command=self.load_prev_image, width=int(screen_width*0.005), height=int(screen_height*0.002)) 
         self.prev_button.pack(side="left")
 
-        self.save_button = tk.Button(self.control_frame, text="Save Crop", command=self.save_crop)
+        self.save_button = tk.Button(self.control_frame, text="Save Crop", command=self.save_crop, width=int(screen_width*0.015), height=int(screen_height*0.002))
         self.save_button.pack(side="left")
 
-        self.next_button = tk.Button(self.control_frame, text=">", command=self.load_next_image)
+        self.next_button = tk.Button(self.control_frame, text=">", command=self.load_next_image, width=int(screen_width*0.005), height=int(screen_height*0.002))
         self.next_button.pack(side="left")
 
         self.root.drop_target_register(DND_FILES)
